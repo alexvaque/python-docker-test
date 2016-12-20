@@ -23,12 +23,33 @@ and:
 localhost:80/service/* 
 
 ### Special endpoints
-/test -> return Hello World
-/allrunning/<runninghour>          return bus that are not running at <runninghour>
-/isrunning/<runninghour>/<route>   return if the bus <route> is running or not at <runninghour>
-/statistics/                       return statistics in Json
-/statistics/xml                    return statistics in XML format
+ /test -> return Hello World
+
+ /allrunning/<runninghour>          return bus that are not running at <runninghour>
+ 
+ /isrunning/<runninghour>/<route>   return if the bus <route> is running or not at <runninghour>
+
+ /statistics/                       return statistics in Json
+ 
+ /statistics/xml                    return statistics in XML format
+
 
 
 running hour = [00,01,02, .., 23]
 route        = http://webservices.nextbus.com/service/publicXMLFeed?command=routeList&a=sf-muni
+
+
+
+## CODE INFORMATION
+
+path: flask-index/app
+
+	./config.py         -> Config files (redis  hostname, proxy hostname or direct url and port to use)
+	./main.py           -> FLASK PROJECT with the MAIN functions
+
+
+	./xmlparsing.py     -> Parsing the information and to get the information 
+	./json2xml.py       -> class to convert json 2 xml
+	./timeit.py         -> to save statistics
+	./redisfunctions.py -> redis functions used to store the statistics into Redis
+

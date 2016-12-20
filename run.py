@@ -5,7 +5,7 @@ import sys
 import os
 
 help_text='''
-    == Local Dev Environment ==\n
+    == Local Docker Environment ==\n
     Options to use: \n\t{start|stop|init|status|destroy|update|logs}
     Example: \n\t./run.py {project_name} {options}
 	'''

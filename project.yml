@@ -19,6 +19,11 @@ services:
     depends_on:
             - redis-server
             - proxy-server
+  my_application_img3:
+    image: flask-index
+    depends_on:
+            - redis-server
+            - proxy-server
   redis-server:
     image: redis-server
     container_name: alex_redis-server_1
