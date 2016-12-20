@@ -1,3 +1,3 @@
 PORT      = '80'
-HOSTNAME  = 'webservices.nextbus.com:80'
-REDISHOST = 'localhost'
+HOSTNAME  = 'proxy:80'
+REDISHOST = 'alex_redis-server_1'
