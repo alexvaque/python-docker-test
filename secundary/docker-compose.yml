@@ -1,0 +1,34 @@
+version: '2'
+services:
+  lb:
+    image: 'dockercloud/haproxy:latest'
+    links:
+            - my_application_img1
+            - my_application_img2
+    ports:
+            - '80:80'
+    volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+  my_application_img1:
+    image: my_application_img
+    #build: ./app_server
+    #container_name: alex_my_application_img1
+    depends_on:
+            - redis-server
+            - proxy-server  
+  my_application_img2:
+    image: my_application_img
+    depends_on:
+            - redis-server
+            - proxy-server
+  redis-server:
+    image: redis-server
+    container_name: alex_redis-server_1    
+    ports:
+            - "6379"
+  proxy-server:
+    image: proxy
+    container_name: proxy 
+    ports:
+            - "8080"
+

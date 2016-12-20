@@ -1,0 +1,39 @@
+server {
+    listen       80 default_server;
+    server_name  _;
+
+    # Proxy pass to /service/\d with json
+    location ~* ^/service/(\d*)/?$ {
+        proxy_pass http://webservices.nextbus.com/service/$1.json;
+        proxy_cache cachezone;
+        proxy_cache_valid  200 302 60m;
+        proxy_cache_valid  301     24h;
+        proxy_cache_valid  any      1m;
+    }
+
+    # Proxy pass to /service/
+    location /service/ {
+        #proxy_pass  http://servers-api.va.3sca.net/servers/;
+        proxy_pass  http://webservices.nextbus.com/service/;
+        proxy_cache cachezone;
+        proxy_cache_valid  200 302 60m;
+        proxy_cache_valid  301     24h;
+        proxy_cache_valid  any      1m;
+    }
+
+    # We don't want nginx doing 301 redirects on /service
+    location = /service {
+        #proxy_pass  http://servers-api.va.3sca.net/servers;
+        proxy_pass  http://webservices.nextbus.com/service;
+        proxy_cache cachezone;
+        proxy_cache_valid  200 302 60m;
+        proxy_cache_valid  301     24h;
+        proxy_cache_valid  any      1m;
+    }
+
+    location /nginx_status {
+        # Turn on nginx stats
+        stub_status on;
+    }
+
+}

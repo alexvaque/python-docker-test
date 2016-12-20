@@ -1,0 +1,4 @@
+flask
+cherrypy
+redis
+uwsgi

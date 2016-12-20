@@ -1,0 +1,7 @@
+version: '2'
+services:
+  mytest:
+    image: webserver
+    ports:
+        - '80:80'
+                                      
