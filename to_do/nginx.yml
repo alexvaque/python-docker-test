@@ -1,7 +1,0 @@
-version: '2'
-services:
-  mytest:
-    image: nginx
-    ports:
-        - '80:80'
-                                      
