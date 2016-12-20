@@ -13,7 +13,7 @@ import config
 
 app = Flask(__name__)
 
-port = config.PORT
+port     = config.PORT
 hostname = config.HOSTNAME
 
 
@@ -25,13 +25,8 @@ def not_found(error):
 
 @app.route('/test')
 def hello():
-    return "Hello World!"
+    return "Hello API!"
 
-
-# Extra:
-# @app.route('/', methods=['GET'])
-# def get_extra():
-#    return jsonify({'extra': extra})
 
 @app.route('/allrunning/<runninghour>')
 def get_all_no_routetime(runninghour):
@@ -46,12 +41,13 @@ def get_no_routetime(runninghour, route):
     return json.dumps(response)
 
 
-# @app.route('/statistics/<format>')
-# def statistics():
-#    if format == 'xml':
-#        return xmlparsing.json2xml(json.loads(redisfunctions.getallStatistics()))
-#    else:
-#        return redisfunctions.getallStatistics()
+@app.route('/isrunning/<runninghour>/<runningminute>/<route>')
+def get_no_routetime_minutes(runninghour, runningminute, route):
+    response = []
+    running = xmlparsing.get_times_minutes(hostname, runninghour, runningminute, route)
+    response.append({'route': route, 'hourtime': runninghour, 'running': running})
+    return json.dumps(response)
+
 
 @app.route('/statistics/')
 def statistics():
@@ -66,4 +62,4 @@ def statistics_xml():
 
 if __name__ == "__main__":
     app.run()  # DEBUG MODE WITHOUT NGINX
-    # app.run(host='0.0.0.0', debug=True, port=PORT)
+    #app.run(host='0.0.0.0', debug=True, port=port)
