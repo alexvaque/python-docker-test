@@ -4,18 +4,16 @@ Python NextBus API, running into docker-compose with proxycache and a redis stor
 # Python+Multiple Docker containers (Docker Compose)
 
 
-## CREATE THE INFRAESTRUCTURE
+## HOW TO CREATE THE INFRASTRUCTURE
 
 ### Dependencies Docker, Docker-compose 
 ### Tested on Ubuntu 16.04 LTS
+### Technologies Nginx, Python, Flask, Docker, Redis, HAproxy, Docker-compose
 
 ./run.sh 
 
-basicly creates 3 docker builds and runs the docker compose
-after that
-localhost:80/test 
+Basically creates 3 docker builds and runs the docker compose after that exposes the app at "http://localhost:80/test"
 
-and:
 
 ## HTTP DEMO
 
@@ -42,6 +40,25 @@ localhost:80/service/*
 	route        = http://webservices.nextbus.com/service/publicXMLFeed?command=routeList&a=sf-muni
 
 
+Examples:
+
+	At 12:XXh route 39
+	> http://localhost/isrunning/12/39  
+
+	At 12:30h route 39
+	> http://localhost/isrunning/12/30/39  
+
+	Proxy-server with cache
+	> localhost/service/publicXMLFeed?command=routeList&a=sf-muni
+
+	Routes that are not working at 12h ?
+	> http://localhost/allrunning/12
+
+	Statistics
+	> http://localhost/statistics/
+
+	Statistics with XML format
+	> http://localhost/statistics/xml
 
 ## CODE INFORMATION
 
@@ -56,6 +73,19 @@ path: flask-index/app
 	./timeit.py         -> to save statistics
 	./redisfunctions.py -> redis functions used to store the statistics into Redis
 
+### HOW TO TEST THE CODE WITHOUT DOCKER
+
+cd flask-index/app
+
+flask-index/app/config.py 
+	HOSTNAME  = 'webservices.nextbus.com'
+	REDISHOST = 'localhost'
+
+and run 
+
+python main.py 
+
+services is http://localhost:5000/test
 
 ## INFRAESTRUCUTURE INFORMATION
 
