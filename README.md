@@ -11,4 +11,12 @@ localhost:80/service/*
 
 ## Special endpoints
 
+/test -> return Hello World
+/allrunning/<runninghour>
+/isrunning/<runninghour>/<route>
+/statistics/ -> return statistics in Json
+/statistics/xml -> return statistics in XML format
 
+
+running hour = [00,01,02,.23]
+route        = http://webservices.nextbus.com/service/publicXMLFeed?command=routeList&a=sf-muni

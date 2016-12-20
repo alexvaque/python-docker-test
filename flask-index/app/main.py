@@ -33,11 +33,6 @@ def hello():
 # def get_extra():
 #    return jsonify({'extra': extra})
 
-@app.route('/isrunning/<int:runninghour>', methods=['GET'])
-def get_more(runninghour):
-    return runninghour  # get_routes(url2,runninghour)
-
-
 @app.route('/allrunning/<runninghour>')
 def get_all_no_routetime(runninghour):
     return xmlparsing.get_all_routes(hostname, runninghour)
