@@ -25,18 +25,21 @@ localhost:80/service/*
 ### Special endpoints
  /test -> return Hello World
 
- /allrunning/<runninghour>          return bus that are not running at <runninghour>
+ "/allrunning/<hour>"          return bus that are not running at <runninghour>
  
- /isrunning/<runninghour>/<route>   return if the bus <route> is running or not at <runninghour>
+ "/isrunning/<hour>/<route>"   return if the bus <route> is running or not at <runninghour>
 
- /statistics/                       return statistics in Json
+ "/isrunning/<hour>/<minute>/<route>"
+
+ "/statistics/"                       return statistics in Json
  
- /statistics/xml                    return statistics in XML format
+ "/statistics/xml"                    return statistics in XML format
 
 
 
-running hour = [00,01,02, .., 23]
-route        = http://webservices.nextbus.com/service/publicXMLFeed?command=routeList&a=sf-muni
+	running hour = [00,01,02, .., 23]
+	minute       = [00,01,02, ...,60]
+	route        = http://webservices.nextbus.com/service/publicXMLFeed?command=routeList&a=sf-muni
 
 
 
@@ -53,3 +56,12 @@ path: flask-index/app
 	./timeit.py         -> to save statistics
 	./redisfunctions.py -> redis functions used to store the statistics into Redis
 
+
+## INFRAESTRUCUTURE INFORMATION
+
+                        1 haproxy
+                   /       |         \
+      nginx+python    nginx-python    nginx-python
+                                        
+                              
+        PROXY (nginx+proxycache)      REDIS
