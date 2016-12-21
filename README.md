@@ -81,8 +81,8 @@ path: flask-index/app
 	cd flask-index/app
 
 flask-index/app/config.py 
-		HOSTNAME  = 'webservices.nextbus.com'
 
+		HOSTNAME  = 'webservices.nextbus.com'
 		REDISHOST = 'localhost'
 
 and run 
