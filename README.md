@@ -9,7 +9,7 @@ Python NextBus API, running into docker-compose with proxycache and a redis stor
 ##### Main dependencies and technologies:
  Docker, Docker-compose v2
  tested on Linux Ubuntu 16.04 LTS
- Technologies: Nginx, Python, Flask, Docker, Redis, HAproxy, Docker-compose
+ Technologies: Nginx, Python, Flask, Docker, Redis, Docker-compose
 
 	./run.sh 
 
@@ -94,9 +94,16 @@ services is at
 
 ## INFRAESTRUCUTURE INFORMATION
 
-                        1 haproxy
+                        nginx-lb
                    /       |         \
       nginx+python    nginx-python    nginx-python
                                         
                               
         PROXY (nginx+proxycache)      REDIS
+
+
+## UPDATE 
+I changed HAproxy for a Nginx (A Nginx working like Load Balancer)
+
+Could be interesting in a future to scalate more nginx-lb, proxies (with shared cache and mount a better Redis (For example, Redis cluster or Redis Sentinel)
+
