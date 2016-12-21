@@ -8,6 +8,9 @@ services:
             - my_application_img3
     ports:
             - '80:80'
+    environment:
+            - APPSESSION 
+            - TIMEOUT  
     volumes:
             - /var/run/docker.sock:/var/run/docker.sock
   my_application_img1:
