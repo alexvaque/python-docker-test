@@ -13,7 +13,7 @@ Python NextBus API, running into docker-compose with proxycache and a redis stor
 
 	./run.sh 
 
-Basically creates 3 docker builds and runs the docker compose after that exposes the app at "http://localhost:80/test"
+Basically creates 3 docker builds, and runs the docker compose after that exposes the app at "http://localhost:80/test"
 
 
 ## HTTP DEMO
@@ -94,16 +94,17 @@ services is at
 
 ## INFRAESTRUCUTURE INFORMATION
 
-                        nginx-lb
-                   /       |         \
-      nginx+python    nginx-python    nginx-python
-                                        
-                              
-        PROXY (nginx+proxycache)      REDIS
 
 
-## UPDATE 
-I changed HAproxy for a Nginx (A Nginx working like Load Balancer)
+			      ---  nginx+python ----\     
+			     /                          Redis
+	nginx-loadbalancer   ----  nginx+python ---- X 
+			     \                          Proxy-cache  --- Next Bus API
+			      ---  nginx+python ----/
+
 
 Could be interesting in a future to scalate more nginx-lb, proxies (with shared cache and mount a better Redis (For example, Redis cluster or Redis Sentinel)
+
+# LAST UPDATE ! 
+I changed HAproxy for Nginx. A Nginx working like Load Balancer.
 
