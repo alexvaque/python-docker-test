@@ -17,3 +17,7 @@ popd
 pushd haproxy/
 sudo docker build -t haproxy .
 popd
+
+pushd lb_nginx/
+sudo docker build -t lb_nginx .
+popd
