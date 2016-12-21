@@ -1,7 +1,7 @@
 version: '2'
 services:
   lb:
-    image: 'dockercloud/haproxy:latest'
+    image: haproxy
     links:
             - my_application_img1
             - my_application_img2

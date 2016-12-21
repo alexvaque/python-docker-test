@@ -13,3 +13,7 @@ popd
 pushd proxy/
 sudo docker build -t proxy .
 popd
+
+pushd haproxy/
+sudo docker build -t haproxy .
+popd
