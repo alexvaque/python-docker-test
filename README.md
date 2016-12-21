@@ -6,11 +6,12 @@ Python NextBus API, running into docker-compose with proxycache and a redis stor
 
 ## HOW TO CREATE THE INFRASTRUCTURE
 
-##### Main dependencies: Docker, Docker-compose v2
-##### Tested on Linux Ubuntu 16.04 LTS
-##### Technologies: Nginx, Python, Flask, Docker, Redis, HAproxy, Docker-compose
+##### Main dependencies and technologies:
+ Docker, Docker-compose v2
+ tested on Linux Ubuntu 16.04 LTS
+ Technologies: Nginx, Python, Flask, Docker, Redis, HAproxy, Docker-compose
 
-./run.sh 
+	./run.sh 
 
 Basically creates 3 docker builds and runs the docker compose after that exposes the app at "http://localhost:80/test"
 
@@ -18,16 +19,18 @@ Basically creates 3 docker builds and runs the docker compose after that exposes
 ## HTTP DEMO
 
 ### Expose all NextBus endpoints in the NextBus API
-localhost:80/service/* 
+
+	http://localhost:80/service/* 
 
 ### Special endpoints
  /test -> return Hello World
 
- "/allrunning/<hour>"          return bus that are not running at <runninghour>
- 
- "/isrunning/<hour>/<route>"   return if the bus <route> is running or not at <runninghour>
 
- "/isrunning/<hour>/<minute>/<route>"
+ "/isrunning/\<hour\>/\<route\>"   return if the bus <route> is running or not at <runninghour>
+
+ "/isrunning/\<hour\>/\<minute\>/\<route\>"
+
+ "/allrunning/\<hour\>"            return bus that are not running at <runninghour>
 
  "/statistics/"                       return statistics in Json
  
@@ -75,17 +78,19 @@ path: flask-index/app
 
 ### HOW TO TEST THE CODE WITHOUT DOCKER
 
-cd flask-index/app
+	cd flask-index/app
 
 flask-index/app/config.py 
-	HOSTNAME  = 'webservices.nextbus.com'
-	REDISHOST = 'localhost'
+		HOSTNAME  = 'webservices.nextbus.com'
+
+		REDISHOST = 'localhost'
 
 and run 
 
-python main.py 
+	python main.py 
 
-services is http://localhost:5000/test
+services is at
+	http://localhost:5000/test
 
 ## INFRAESTRUCUTURE INFORMATION
 
