@@ -5,6 +5,7 @@ services:
     links:
             - my_application_img1
             - my_application_img2
+            - my_application_img3
     ports:
             - '80:80'
     volumes:
